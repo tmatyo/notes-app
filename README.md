@@ -3,8 +3,6 @@ Notes App hosted on this GitHub repository unite React for the frontend and Node
 
 ![Notes app](https://images.squarespace-cdn.com/content/v1/50eca855e4b0939ae8bb12d9/1491603286291-OBWY64NI1EQATK05MCAZ/image-asset.jpeg?format=2500w)
 
-### :point_right: [DEMO](https://zipzip1312.github.io/React-Notes-App/) :rocket:
-
 ## :hammer: Technologies & Tools
 
 - React
