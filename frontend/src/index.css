@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* App */
+
+.App {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px 0;
+  width: 50%;
+}
+
+/* Notes form */
+
+.notes-form {
+  width: 100%;
+}
+
+.notes-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.notes-form form .form-items {
+  margin: 20px 0;
+}

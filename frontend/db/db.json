@@ -1,0 +1,64 @@
+{
+  "notes": [
+    {
+      "id": 1,
+      "title": "Test note 1",
+      "categoryId": 1,
+      "description": "This shall be a longer text, hence the name description"
+    },
+    {
+      "id": 2,
+      "title": "Test note 2",
+      "categoryId": 1,
+      "description": "This shall be a longer text, hence the name description"
+    },
+    {
+      "id": 3,
+      "title": "Test note 3",
+      "categoryId": 4,
+      "description": "This shall be a longer text, hence the name description"
+    },
+    {
+      "id": 4,
+      "title": "Test note 4",
+      "categoryId": 2,
+      "description": "This shall be a longer text, hence the name description"
+    },
+    {
+      "id": 5,
+      "title": "Test note 5",
+      "categoryId": 3,
+      "description": "This shall be a longer text, hence the name description"
+    },
+    {
+      "title": "This is sehr gut",
+      "categoryId": 3,
+      "description": "Is it sehr gut? support is a ",
+      "id": 6
+    },
+    {
+      "title": "New Note to add",
+      "categoryId": 3,
+      "description": "Support is the category ",
+      "id": 7
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "HR"
+    },
+    {
+      "id": 2,
+      "name": "IT"
+    },
+    {
+      "id": 3,
+      "name": "Support"
+    },
+    {
+      "id": 4,
+      "name": "Management"
+    }
+  ]
+}
