@@ -1,5 +1,6 @@
 import { TextField, TextareaAutosize, FormControl, InputLabel, Select, MenuItem, Button } from "@mui/material"
 import { useState, useEffect } from "react"
+import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
 function NotesForm() {
 
@@ -40,9 +41,9 @@ function NotesForm() {
     }, [])
 
     return (
-        <div className="notes-form">
+        <div className="notes-form card">
             <h2>Add note</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="the-form">
                 <FormControl className="form-items">
                     <TextField id="Title" label="Title" variant="outlined" value={title} onChange={e => setTitle(e.target.value)} />
                 </FormControl>
@@ -60,7 +61,7 @@ function NotesForm() {
                 </FormControl>
 
                 <Button className="form-items" type="submit" variant="contained">
-                    { pending ? "loading..." : "Submit"}
+                    <NoteAddIcon className={pending ? "rotate-icon" : ""} /> Create note
                 </Button>
 
             </form>
