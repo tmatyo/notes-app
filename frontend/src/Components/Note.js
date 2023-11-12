@@ -1,7 +1,6 @@
 import { ButtonGroup, Button } from "@mui/material"
 
-
-export default function Note({note, edit, remove}) {
+const Note = ({note, edit, remove}) => {
 
     return (
         <div className="note card">
@@ -16,3 +15,5 @@ export default function Note({note, edit, remove}) {
         </div>
     )
 }
+
+export default Note

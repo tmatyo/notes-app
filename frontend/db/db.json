@@ -13,12 +13,6 @@
       "description": "This shall be a longer text, hence the name description"
     },
     {
-      "id": 4,
-      "title": "Test note 4",
-      "categoryId": 2,
-      "description": "This shall be a longer text, hence the name description"
-    },
-    {
       "title": "This is sehr gut",
       "categoryId": 3,
       "description": "Is it sehr gut? support is a ",

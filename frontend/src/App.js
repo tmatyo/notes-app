@@ -6,16 +6,24 @@ function App() {
 
   const [notes, setNotes] = useState([])
   const [noteToEdit, setNoteToEdit] = useState(null)
+  const [categories, setCategories] = useState([])
 
-  const fetchData = () => {
-    if(notes.length == 0) {
-      fetch("http://localhost:1234/notes?_expand=category")
-      .then(r => r.json())
-      .then(d => setNotes(d))
-      .catch(e => console.log("Error during fetching notes", e))
-    }
+  // fetching data
+  const fetchNotes = () => {
+    fetch("http://localhost:1234/notes?_expand=category")
+    .then(r => r.json())
+    .then(d => setNotes(d))
+    .catch(e => console.log("Error during fetching notes", e))
   }
 
+  const fetchCategories = () => {
+    fetch("http://localhost:1234/categories")
+    .then(r => r.json())
+    .then(d => setCategories(d))
+    .catch(e => console.log("Error during fetching categories", e))
+  }
+
+  // crud
   const edit = (id) => {
     let n = notes.filter(n => n.id === id)[0]
     setNoteToEdit(n)
@@ -26,17 +34,40 @@ function App() {
       method: "DELETE"
     }).then(r => r.json())
     .then(d => {
-      setNotes([])
+      fetchNotes()
     })
     .catch(e => console.log("Error during removing Note", e))
   }
 
-  useEffect(() => fetchData(),[notes, noteToEdit])
+  // filter
+  const filterByCategory = (id) => {
+    if(id === 0) {
+      // reset filter
+      fetchNotes()
+    } else {
+      fetch("http://localhost:1234/notes?_expand=category&categoryId=" + id)
+      .then(r => r.json())
+      .then(d => setNotes(d))
+      .catch(e => console.log("Error during filtering notes by category", e))
+    }
+  }
+
+  // init
+  useEffect(() => {
+
+    if(notes.length == 0) {
+      fetchNotes()
+    }
+
+    if(categories.length == 0) {
+      fetchCategories()
+    }
+  },[notes, noteToEdit])
 
   return (
     <div className="App">
-      <NotesForm handle={setNotes} note={noteToEdit}/>
-      <NotesList notes={notes} edit={edit} remove={remove} />
+      <NotesForm categoriesList={categories} handle={setNotes} note={noteToEdit}/>
+      <NotesList filterByCategory={filterByCategory} categoriesList={categories} notes={notes} edit={edit} remove={remove} />
     </div>
   );
 }

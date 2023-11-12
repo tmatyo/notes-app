@@ -2,7 +2,7 @@ import { TextField, TextareaAutosize, FormControl, InputLabel, Select, MenuItem,
 import { useState, useEffect } from "react"
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
-function NotesForm({handle, note}) {
+function NotesForm({handle, note, categoriesList}) {
 
     // form state
     const [title, setTitle] = useState("")
@@ -64,18 +64,8 @@ function NotesForm({handle, note}) {
         })
     }
 
-    const fetchData = () => {
-        fetch("http://localhost:1234/categories")
-        .then(r => r.json())
-        .then(d => setCategories(d))
-        .catch(e => console.log("Error during fetching categories", e))
-    }
-
     // get existing categories on component load
     useEffect(() => {
-        if(categories.length == 0) {
-            fetchData()
-        }
 
         if(note) {
             setNoteId(note.id)
@@ -84,11 +74,15 @@ function NotesForm({handle, note}) {
             setDescription(note.description)
         }
 
-    }, [note])
+        if(categoriesList.length > 0) {
+            setCategories(categoriesList)
+        }
+
+    }, [note, categoriesList])
 
     return (
         <div className="notes-form card">
-            <h2>{ noteId ? "Edit note #" + noteId : "Add note"}</h2>
+            <h2>{ noteId ? "Editing note #" + noteId : "Add note"}</h2>
             <form onSubmit={handleSubmit} className="the-form">
                 <FormControl className="form-items">
                     <TextField id="Title" label="Title" variant="outlined" value={title} onChange={e => setTitle(e.target.value)} />
