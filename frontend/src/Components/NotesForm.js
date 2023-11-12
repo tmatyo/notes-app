@@ -2,52 +2,93 @@ import { TextField, TextareaAutosize, FormControl, InputLabel, Select, MenuItem,
 import { useState, useEffect } from "react"
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
-function NotesForm({handle}) {
+function NotesForm({handle, note}) {
 
     // form state
     const [title, setTitle] = useState("")
     const [category, setCategory] = useState(0)
     const [description, setDescription] = useState("")
 
+    // if set, form is in edit mode
+    const [noteId, setNoteId] = useState(null)
+
     const [categories, setCategories] = useState([])
     const [pending, setPending] = useState(false)
 
+    const resetForm = () => {
+        setPending(false)
+        setNoteId(null)
+        setTitle("")
+        setCategory(0)
+        setDescription("")
+    }
+
     // save note
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
+        let apiUrl = "http://localhost:1234/notes"
+        let options = {
+            title, 
+            categoryId: category, 
+            description
+        }
+        let method = noteId ? "PUT" : "POST"
 
         // trigger loading animation
         setPending(true)
 
-        let result = await fetch("http://localhost:1234/notes", {
+        // if noteId is defined, we are editing
+        if(noteId) {
+            options.id = noteId
+            apiUrl += "/" + noteId
+        }
+
+        fetch(apiUrl, {
             headers: { 
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             },
-            method: "POST",
-            body: JSON.stringify({title, categoryId: category, description})
+            method,
+            body: JSON.stringify(options)
         })
         .then(r => r.json())
         .then(()=> {
             // stop loading animation
             setPending(false)
+            resetForm()
             // trigger state change, so list rerenders
             handle([])
+        }).catch(e => {
+            console.log('Error during creating Note', e)
+            resetForm()
         })
+    }
 
-        console.log(result)
+    const fetchData = () => {
+        fetch("http://localhost:1234/categories")
+        .then(r => r.json())
+        .then(d => setCategories(d))
+        .catch(e => console.log("Error during fetching categories", e))
     }
 
     // get existing categories on component load
     useEffect(() => {
-        fetch("http://localhost:1234/categories")
-        .then(r => r.json())
-        .then(d => setCategories(d))
-    }, [])
+        if(categories.length == 0) {
+            fetchData()
+        }
+
+        if(note) {
+            setNoteId(note.id)
+            setTitle(note.title)
+            setCategory(note.categoryId)
+            setDescription(note.description)
+        }
+
+    }, [note])
 
     return (
         <div className="notes-form card">
-            <h2>Add note</h2>
+            <h2>{ noteId ? "Edit note #" + noteId : "Add note"}</h2>
             <form onSubmit={handleSubmit} className="the-form">
                 <FormControl className="form-items">
                     <TextField id="Title" label="Title" variant="outlined" value={title} onChange={e => setTitle(e.target.value)} />
