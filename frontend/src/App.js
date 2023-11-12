@@ -20,8 +20,15 @@ function App() {
 
   }
 
-  const remove = () => {
-
+  const remove = (id) => {
+    fetch("http://localhost:1234/notes/" + id, {
+      method: "DELETE"
+    }).then(r => r.json())
+    .then(d => {
+      console.log(d)
+      setNotes([])
+    })
+    .catch(e => console.log(e))
   }
 
   useEffect(() => fetchData(),[notes])
@@ -29,7 +36,7 @@ function App() {
   return (
     <div className="App">
       <NotesForm handle={setNotes}/>
-      <NotesList notes={notes} />
+      <NotesList notes={notes} edit={edit} remove={remove} />
     </div>
   );
 }

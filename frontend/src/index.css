@@ -69,15 +69,38 @@ code {
   grid-template-columns: 1fr 1fr 1fr;
   gap: var(--pm-md);
 
-  .note-title {
-    color: var(--dark);
-    text-transform: uppercase;
+  .note {
+    display: flex;
+    flex-direction: column;
+
+    .note-title {
+      color: var(--dark);
+      text-transform: uppercase;
+      margin: 0;
+    }
+  
+    .note-category {
+      color: gray;
+      font-style: italic;
+      margin: 0;
+    }
+
+    .note-button-divider {
+      width: 100%;
+    }
+  
+    .note-button-group {
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+
+      .note-button {
+        width: 50%;
+      }
+    }
+
   }
 
-  .note-category {
-    color: gray;
-    font-style: italic;
-  }
 }
 
 /* universal */

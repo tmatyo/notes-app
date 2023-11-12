@@ -7,12 +7,6 @@
       "description": "This shall be a longer text, hence the name description"
     },
     {
-      "id": 2,
-      "title": "Test note 2",
-      "categoryId": 1,
-      "description": "This shall be a longer text, hence the name description"
-    },
-    {
       "id": 3,
       "title": "Test note 3",
       "categoryId": 4,
@@ -22,12 +16,6 @@
       "id": 4,
       "title": "Test note 4",
       "categoryId": 2,
-      "description": "This shall be a longer text, hence the name description"
-    },
-    {
-      "id": 5,
-      "title": "Test note 5",
-      "categoryId": 3,
       "description": "This shall be a longer text, hence the name description"
     },
     {
@@ -41,6 +29,36 @@
       "categoryId": 3,
       "description": "Support is the category ",
       "id": 7
+    },
+    {
+      "title": "sdfasdfas d",
+      "categoryId": 2,
+      "description": "it it it it it it it ",
+      "id": 8
+    },
+    {
+      "title": "a new title to try animation",
+      "categoryId": 3,
+      "description": "Lets see what this does",
+      "id": 9
+    },
+    {
+      "title": "thies is a test",
+      "categoryId": 4,
+      "description": "can we do this more times?",
+      "id": 11
+    },
+    {
+      "title": "THis is just another test",
+      "categoryId": 2,
+      "description": "will it work or will it not?",
+      "id": 14
+    },
+    {
+      "title": "did it just work?",
+      "categoryId": 4,
+      "description": "will it work or will it not? this is the question",
+      "id": 15
     }
   ],
   "categories": [
