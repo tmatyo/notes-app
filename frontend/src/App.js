@@ -6,15 +6,29 @@ function App() {
 
   const [notes, setNotes] = useState([])
 
-  useEffect(() => {
+  const fetchData = () => {
+    console.log(notes)
+    console.log(notes.length)
+    if(notes.length == 0) {
       fetch("http://localhost:1234/notes?_expand=category")
       .then(r => r.json())
       .then(d => setNotes(d))
-  },[notes])
+    }
+  }
+
+  const edit = () => {
+
+  }
+
+  const remove = () => {
+
+  }
+
+  useEffect(() => fetchData(),[notes])
 
   return (
     <div className="App">
-      <NotesForm />
+      <NotesForm handle={setNotes}/>
       <NotesList notes={notes} />
     </div>
   );

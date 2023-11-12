@@ -2,7 +2,7 @@ import { TextField, TextareaAutosize, FormControl, InputLabel, Select, MenuItem,
 import { useState, useEffect } from "react"
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 
-function NotesForm() {
+function NotesForm({handle}) {
 
     // form state
     const [title, setTitle] = useState("")
@@ -15,8 +15,8 @@ function NotesForm() {
     // save note
     const handleSubmit = async (e) => {
         e.preventDefault()
-        //console.log(title, category, description)
 
+        // trigger loading animation
         setPending(true)
 
         let result = await fetch("http://localhost:1234/notes", {
@@ -28,7 +28,12 @@ function NotesForm() {
             body: JSON.stringify({title, categoryId: category, description})
         })
         .then(r => r.json())
-        .then(()=> setPending(false))
+        .then(()=> {
+            // stop loading animation
+            setPending(false)
+            // trigger state change, so list rerenders
+            handle([])
+        })
 
         console.log(result)
     }
