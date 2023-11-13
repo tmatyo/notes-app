@@ -179,3 +179,32 @@ button[type='submit'] {
       transform:rotate(360deg); 
   } 
 }
+
+
+@media only screen and (max-width: 1024px) {
+  .App  {
+    width: 90%;
+  }
+  .notes-form {
+    width: 100%;
+  }
+
+  .notes-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 786px) {
+
+  .notes-filter {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+
+  .notes-list {
+    grid-template-columns: 1fr;
+  }
+}
