@@ -1,28 +1,10 @@
 {
   "notes": [
     {
-      "id": 1,
       "title": "Test note 1",
       "categoryId": 1,
-      "description": "This shall be a longer text, hence the name description"
-    },
-    {
-      "id": 3,
-      "title": "Test note 3",
-      "categoryId": 4,
-      "description": "This shall be a longer text, hence the name description"
-    },
-    {
-      "title": "This is sehr gut",
-      "categoryId": 3,
-      "description": "Is it sehr gut? support is a ",
-      "id": 6
-    },
-    {
-      "title": "New Note to add",
-      "categoryId": 3,
-      "description": "Support is the category ",
-      "id": 7
+      "description": "This shall be a longer text, hence the name description",
+      "id": 1
     },
     {
       "title": "sdfasdfas d",
@@ -32,15 +14,9 @@
     },
     {
       "title": "a new title to try animation",
-      "categoryId": 3,
+      "categoryId": 1,
       "description": "Lets see what this does",
       "id": 9
-    },
-    {
-      "title": "thies is a test",
-      "categoryId": 4,
-      "description": "can we do this more times?",
-      "id": 11
     },
     {
       "title": "THis is just another test",
@@ -57,7 +33,7 @@
     {
       "title": "This is another test",
       "categoryId": 4,
-      "description": "lol",
+      "description": "lol, this might be a lot longer now",
       "id": 16
     },
     {
@@ -71,6 +47,30 @@
       "categoryId": 3,
       "description": "support is good, is it tho?",
       "id": 18
+    },
+    {
+      "title": "test",
+      "categoryId": 2,
+      "description": "asdf asdf",
+      "id": 19
+    },
+    {
+      "title": "Test again",
+      "categoryId": 3,
+      "description": "testing",
+      "id": 21
+    },
+    {
+      "title": "asdf as",
+      "categoryId": 3,
+      "description": "asdfasdf a",
+      "id": 22
+    },
+    {
+      "title": "This should not work rn should it?",
+      "categoryId": 3,
+      "description": "asdf asdf asdf ",
+      "id": 23
     }
   ],
   "categories": [

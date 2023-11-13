@@ -1,73 +1,32 @@
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import NotesForm from "./Components/NotesForm.js";
 import NotesList from "./Components/NotesList.js";
 
+import { useSelector, useDispatch } from 'react-redux'
+import { fetchNotes, fetchCategories } from "./Provider/noteSlice.js";
+
 function App() {
 
-  const [notes, setNotes] = useState([])
-  const [noteToEdit, setNoteToEdit] = useState(null)
-  const [categories, setCategories] = useState([])
+  const notes = useSelector(state => state.note.notes)
+  const categories = useSelector(state => state.note.categories)
 
-  // fetching data
-  const fetchNotes = () => {
-    fetch("http://localhost:1234/notes?_expand=category")
-    .then(r => r.json())
-    .then(d => setNotes(d))
-    .catch(e => console.log("Error during fetching notes", e))
-  }
-
-  const fetchCategories = () => {
-    fetch("http://localhost:1234/categories")
-    .then(r => r.json())
-    .then(d => setCategories(d))
-    .catch(e => console.log("Error during fetching categories", e))
-  }
-
-  // crud
-  const edit = (id) => {
-    let n = notes.filter(n => n.id === id)[0]
-    setNoteToEdit(n)
-  }
-
-  const remove = (id) => {
-    fetch("http://localhost:1234/notes/" + id, {
-      method: "DELETE"
-    }).then(r => r.json())
-    .then(d => {
-      fetchNotes()
-    })
-    .catch(e => console.log("Error during removing Note", e))
-  }
-
-  // filter
-  const filterByCategory = (id) => {
-    if(id === 0) {
-      // reset filter
-      fetchNotes()
-    } else {
-      fetch("http://localhost:1234/notes?_expand=category&categoryId=" + id)
-      .then(r => r.json())
-      .then(d => setNotes(d))
-      .catch(e => console.log("Error during filtering notes by category", e))
-    }
-  }
+  const dispatch = useDispatch()
 
   // init
   useEffect(() => {
-
     if(notes.length == 0) {
-      fetchNotes()
+      dispatch(fetchNotes())
     }
 
     if(categories.length == 0) {
-      fetchCategories()
+      dispatch(fetchCategories())
     }
-  },[notes, noteToEdit])
+  }, [notes])
 
   return (
     <div className="App">
-      <NotesForm categoriesList={categories} handle={setNotes} note={noteToEdit}/>
-      <NotesList filterByCategory={filterByCategory} categoriesList={categories} notes={notes} edit={edit} remove={remove} />
+      <NotesForm categories={categories} />
+      <NotesList  categoriesList={categories} notes={notes}  />
     </div>
   );
 }

@@ -1,15 +1,19 @@
 import { ButtonGroup, Button } from "@mui/material"
+import { useDispatch } from "react-redux"
+import { fetchNotes, filterBy } from "../Provider/noteSlice"
 
-const NotesFilter = ({categoriesList, filterByCategory, notesCount}) => {
+const NotesFilter = ({categoriesList, notesCount}) => {
+
+    const dispatch = useDispatch()
 
     return (
         <div className="notes-filter card">
             <span>Notes count: {notesCount}</span>
             <ButtonGroup className="notes-filter-buttons" variant="outlined" size="small" aria-label="small button group">
-                <Button key={0} onClick={() => filterByCategory(0)} >Reset</Button>
+                <Button key={0} onClick={() => dispatch(fetchNotes())} >Reset</Button>
             </ButtonGroup>
             <ButtonGroup className="notes-filter-buttons" variant="outlined" size="small" aria-label="small button group">                
-                { categoriesList.map(c => <Button key={c.id} onClick={() => filterByCategory(c.id)}>{c.name}</Button>)}
+                { categoriesList.map(c => <Button key={c.id} onClick={() => dispatch(filterBy(c.id))}>{c.name}</Button>)}
             </ButtonGroup>
         </div>
     )

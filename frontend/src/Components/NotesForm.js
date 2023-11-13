@@ -1,107 +1,72 @@
 import { TextField, TextareaAutosize, FormControl, InputLabel, Select, MenuItem, Button } from "@mui/material"
-import { useState, useEffect } from "react"
-import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import NoteAddIcon from '@mui/icons-material/NoteAdd'
+import { useSelector, useDispatch } from "react-redux"
+import { createNote, editNote, setTitle, setCategoryId, setDescription} from '../Provider/noteSlice'
 
-function NotesForm({handle, note, categoriesList}) {
+function NotesForm({categories}) {
 
-    // form state
-    const [title, setTitle] = useState("")
-    const [category, setCategory] = useState(0)
-    const [description, setDescription] = useState("")
-
-    // if set, form is in edit mode
-    const [noteId, setNoteId] = useState(null)
-
-    const [categories, setCategories] = useState([])
-    const [pending, setPending] = useState(false)
-
-    const resetForm = () => {
-        setPending(false)
-        setNoteId(null)
-        setTitle("")
-        setCategory(0)
-        setDescription("")
-    }
+    const dispatch = useDispatch()
+    const note = useSelector(state => state.note.note)
+    const edit = useSelector(state => state.note.edit)
 
     // save note
     const handleSubmit = (e) => {
         e.preventDefault()
-        let apiUrl = "http://localhost:1234/notes"
-        let options = {
-            title, 
-            categoryId: category, 
-            description
+
+        if(edit) {
+            dispatch(editNote({
+                id: edit, 
+                title: note.title, 
+                categoryId: note.categoryId, 
+                description: note.description}))
+        } else {
+            dispatch(createNote(note))
         }
-        let method = noteId ? "PUT" : "POST"
-
-        // trigger loading animation
-        setPending(true)
-
-        // if noteId is defined, we are editing
-        if(noteId) {
-            options.id = noteId
-            apiUrl += "/" + noteId
-        }
-
-        fetch(apiUrl, {
-            headers: { 
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            method,
-            body: JSON.stringify(options)
-        })
-        .then(r => r.json())
-        .then(()=> {
-            // stop loading animation
-            setPending(false)
-            resetForm()
-            // trigger state change, so list rerenders
-            handle([])
-        }).catch(e => {
-            console.log('Error during creating Note', e)
-            resetForm()
-        })
     }
-
-    // get existing categories on component load
-    useEffect(() => {
-
-        if(note) {
-            setNoteId(note.id)
-            setTitle(note.title)
-            setCategory(note.categoryId)
-            setDescription(note.description)
-        }
-
-        if(categoriesList.length > 0) {
-            setCategories(categoriesList)
-        }
-
-    }, [note, categoriesList])
 
     return (
         <div className="notes-form card">
-            <h2>{ noteId ? "Editing note #" + noteId : "Add note"}</h2>
+            <h2>{ edit ? "Editing note #" + edit : "Add note"}</h2>
             <form onSubmit={handleSubmit} className="the-form">
                 <FormControl className="form-items">
-                    <TextField id="Title" label="Title" variant="outlined" value={title} onChange={e => setTitle(e.target.value)} />
+                    <TextField 
+                    id="Title" 
+                    label="Title (Max 50 characters)" 
+                    variant="outlined" 
+                    value={note.title} 
+                    onChange={e => dispatch(setTitle(e.target.value))} 
+                    maxLength="50"
+                    required />
                 </FormControl>
 
                 <FormControl className="form-items">
                     <InputLabel id="demo-simple-select-label">Category</InputLabel>
-                    <Select labelId="demo-simple-select-label" id="demo-simple-select" value={category} label="Category" onChange={e => setCategory(e.target.value)} >
-                        <MenuItem value={0}>Choose category...</MenuItem>
+                    <Select 
+                    labelId="demo-simple-select-label" 
+                    id="demo-simple-select" 
+                    value={note.categoryId} 
+                    label="Category" 
+                    onChange={e => dispatch(setCategoryId(e.target.value))}
+                    required >
+                        <MenuItem value="">Choose category...</MenuItem>
                         { categories.map(c => (<MenuItem value={c.id} key={c.id}>{c.name}</MenuItem>)) }
                     </Select>
                 </FormControl>
 
                 <FormControl className="form-items">
-                    <TextareaAutosize value={description} aria-label="minimum height" label="Description" minRows={3} placeholder="Description goes here" onChange={e => setDescription(e.target.value)} />
+                    <TextareaAutosize 
+                    value={note.description} 
+                    aria-label="minimum height" 
+                    label="Description (Max 256 characters)" 
+                    minRows={7} 
+                    placeholder="Description (Max 256 characters)" 
+                    onChange={e => dispatch(setDescription(e.target.value))}
+                    maxLength="256"
+                    required />
                 </FormControl>
 
                 <Button className="form-items" type="submit" variant="contained">
-                    <NoteAddIcon className={pending ? "rotate-icon" : ""} /> Create note
+                    <NoteAddIcon /> Create note
                 </Button>
 
             </form>
