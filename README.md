@@ -21,10 +21,6 @@ Notes App hosted on this GitHub repository unite React for the frontend and Node
 
 ## :wrench: Project setup
 
-- Clone the repo:
-```bash
-# In the project directory run:
-git clone https://github.com/ivan-molnar1/notes-app.git
-cd notes-app
-```
-Happy coding!
+- Try the result:
+On [netlabs.sk](http://netlabs.sk) you can find a live preview of this app.
+
