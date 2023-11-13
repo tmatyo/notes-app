@@ -47,6 +47,12 @@ export const filterBy = createAsyncThunk("note/filterBy", async (id) => {
     .then(r => r.json())
 })
 
+// search
+export const search = createAsyncThunk("note/search", async (query) => {
+    return await fetch("http://localhost:1234/notes?_expand=category&q=" + query)
+    .then(r => r.json())
+})
+
 const noteReset = {
     id: null,
     title: "",
@@ -174,6 +180,20 @@ export const noteSlice = createSlice({
             state.notes = action.payload
         })
         builder.addCase(filterBy.rejected, (state, action) => {
+            state.pending = false
+            state.error = action.payload
+        })
+
+        // search
+
+        builder.addCase(search.pending, (state) => {
+            state.pending = true
+        })
+        builder.addCase(search.fulfilled, (state, action) => {
+            state.pending = false
+            state.notes = action.payload
+        })
+        builder.addCase(search.rejected, (state, action) => {
             state.pending = false
             state.error = action.payload
         })

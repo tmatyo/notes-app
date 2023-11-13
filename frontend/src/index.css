@@ -63,9 +63,20 @@ code {
 }
 
 /* Notes filter */
+.notes-search {
+  width: 100%;
+  margin-bottom: var(--pm-md);
+  display: flex;
+  align-items: center;
+
+  .notes-search-label {
+    margin-right: var(--pm-md);
+  }
+}
+
 .notes-filter {
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: var(--pm-md);
 
   .notes-filter-buttons {
     margin-left: var(--pm-md);
