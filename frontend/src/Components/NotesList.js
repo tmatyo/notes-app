@@ -2,16 +2,16 @@ import Note from "./Note"
 import AnnouncementIcon from '@mui/icons-material/Announcement'
 import NotesFilter from './NotesFilter'
 
-const NotesList = ({notes, categoriesList }) => {
+const NotesList = ({notes, categories }) => {
 
     return (
         <>
             {
                 notes ? (
                     <>
-                        <NotesFilter categoriesList={categoriesList}  notesCount={notes.length}/>
+                        <NotesFilter categories={categories}  notesCount={notes.length}/>
                         <div className="notes-list">
-                            { notes.map(n => <Note note={n} key={n.id} />) }
+                            { notes && notes.map(n => <Note note={n} key={n.id} />) }
                         </div>
                     </>
                 ) : (

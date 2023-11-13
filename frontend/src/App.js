@@ -26,7 +26,7 @@ function App() {
   return (
     <div className="App">
       <NotesForm categories={categories} />
-      <NotesList  categoriesList={categories} notes={notes}  />
+      <NotesList  categories={categories} notes={notes}  />
     </div>
   );
 }

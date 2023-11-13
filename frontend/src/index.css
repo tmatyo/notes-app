@@ -77,6 +77,8 @@ code {
 .notes-filter {
   width: 100%;
   margin-bottom: var(--pm-md);
+  display: flex;
+  align-items: center;
 
   .notes-filter-buttons {
     margin-left: var(--pm-md);

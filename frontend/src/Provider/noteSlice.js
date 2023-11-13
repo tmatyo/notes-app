@@ -18,7 +18,7 @@ export const createNote = createAsyncThunk("note/createNote", async ({title, cat
             'Content-Type': 'application/json'
         },
         method: "POST",
-        body: JSON.stringify({title, categoryId, description})
+        body: JSON.stringify({title, categoryId, description, dateAdded: new Date().toISOString()})
     })
     .then(r => r.json())
 })
@@ -57,7 +57,8 @@ const noteReset = {
     id: null,
     title: "",
     categoryId: "",
-    description: ""
+    description: "",
+    dateAdded: ""
 }
 
 export const noteSlice = createSlice({
@@ -68,23 +69,20 @@ export const noteSlice = createSlice({
         notes: [],
         categories: [],
         pending: false,
-        error: ''
+        error: '',
+        sort: 'asc'
     },
     reducers: {
         setId: (state, action) => {
-            console.log(action)
             state.note.id = action.payload
         },
         setTitle: (state, action) => {
-            console.log(action)
             state.note.title = action.payload.substring(0, 50)
         },
         setCategoryId: (state, action) => {
-            console.log(action)
             state.note.categoryId = action.payload
         },
         setDescription: (state, action) => {
-            console.log(action)
             state.note.description = action.payload.substring(0, 256)
         },
         setEdit: (state, action) => {
@@ -93,6 +91,10 @@ export const noteSlice = createSlice({
             state.note.title = noteToEdit.title
             state.note.categoryId = noteToEdit.categoryId
             state.note.description = noteToEdit.description
+        },
+        setSort: (state, action) => {
+            state.sort = action.payload
+            state.notes = []
         }
         //getNote: (state, id) => state.notes.length > 0 ? state.notes.filter(n => n.id === id) : []
     },
@@ -105,7 +107,7 @@ export const noteSlice = createSlice({
         })
         builder.addCase(fetchNotes.fulfilled, (state, action) => {
             state.pending = false
-            state.notes = action.payload
+            state.notes = state.sort === 'asc' ? action.payload.sort((a, b) => new Date(a.dateAdded) - new Date(b.dateAdded)) : action.payload.sort((a, b) => new Date(b.dateAdded) - new Date(a.dateAdded))
         })
         builder.addCase(fetchNotes.rejected, (state, action) => {
             state.pending = false
@@ -148,6 +150,7 @@ export const noteSlice = createSlice({
         })
         builder.addCase(editNote.fulfilled, (state, action) => {
             state.pending = false
+            state.edit = null
             state.note = noteReset
             state.notes = []
         })
@@ -202,6 +205,6 @@ export const noteSlice = createSlice({
 
 })
 
-export const {setId, setTitle, setCategoryId, setDescription, setEdit} = noteSlice.actions
+export const {setId, setTitle, setCategoryId, setDescription, setEdit, setSort} = noteSlice.actions
 
 export default noteSlice.reducer

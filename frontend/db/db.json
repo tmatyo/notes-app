@@ -1,76 +1,32 @@
 {
   "notes": [
     {
-      "title": "Test note 1",
+      "title": "This is a new note",
       "categoryId": 1,
-      "description": "This shall be a longer text, hence the name description",
-      "id": 1
+      "description": "Test note",
+      "id": 1,
+      "dateAdded": "2023-11-13T20:31:52.408Z"
     },
     {
-      "title": "sdfasdfas d",
-      "categoryId": 2,
-      "description": "it it it it it it it ",
-      "id": 8
+      "title": "Another note",
+      "categoryId": 3,
+      "description": "Testing this app",
+      "id": 2,
+      "dateAdded": "2023-11-15T20:31:52.408Z"
     },
     {
-      "title": "a new title to try animation",
-      "categoryId": 1,
-      "description": "Lets see what this does",
-      "id": 9
-    },
-    {
-      "title": "THis is just another test",
-      "categoryId": 2,
-      "description": "will it work or will it not?",
-      "id": 14
-    },
-    {
-      "title": "did it just work?",
+      "title": "This might be another note",
       "categoryId": 4,
-      "description": "will it work or will it not? this is the question",
-      "id": 15
+      "description": "Another note added ",
+      "id": 3,
+      "dateAdded": "2023-11-23T20:31:52.408Z"
     },
     {
-      "title": "This is another test",
-      "categoryId": 4,
-      "description": "lol, this might be a lot longer now",
-      "id": 16
-    },
-    {
-      "title": "This is a test ",
-      "categoryId": 4,
-      "description": "This is a test to test the editing",
-      "id": 17
-    },
-    {
-      "title": "This should work now",
-      "categoryId": 3,
-      "description": "support is good, is it tho?",
-      "id": 18
-    },
-    {
-      "title": "test",
+      "title": "Trying this new feature",
       "categoryId": 2,
-      "description": "asdf asdf",
-      "id": 19
-    },
-    {
-      "title": "Test again",
-      "categoryId": 3,
-      "description": "testing",
-      "id": 21
-    },
-    {
-      "title": "asdf as",
-      "categoryId": 3,
-      "description": "asdfasdf a",
-      "id": 22
-    },
-    {
-      "title": "This should not work rn should it?",
-      "categoryId": 3,
-      "description": "asdf asdf asdf ",
-      "id": 23
+      "description": "Trying adding a note with dateAdded",
+      "dateAdded": "2023-11-13T20:33:14.342Z",
+      "id": 4
     }
   ],
   "categories": [
