@@ -1,7 +1,7 @@
 import { ButtonGroup, Button } from "@mui/material"
 import { useDispatch } from "react-redux"
 import { fetchNotes, filterBy, search, setSort } from "../Provider/noteSlice"
-import { FormControl, TextField  } from '@mui/material'
+import { FormControl, TextField, Chip  } from '@mui/material'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
@@ -31,7 +31,7 @@ const NotesFilter = ({categories, notesCount}) => {
                 </FormControl>
         </div>
         <div className="notes-filter card">
-            <span>Notes count: {notesCount}</span>
+            <Chip label={"Notes count: " + notesCount} />
             <ButtonGroup 
             className="notes-filter-buttons" 
             variant="outlined" 

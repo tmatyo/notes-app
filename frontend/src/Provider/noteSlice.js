@@ -85,6 +85,10 @@ export const noteSlice = createSlice({
         setDescription: (state, action) => {
             state.note.description = action.payload.substring(0, 256)
         },
+        resetNote: (state, action) => {
+            state.note = noteReset
+            state.edit = null
+        },
         setEdit: (state, action) => {
             let noteToEdit = state.notes.filter(n => n.id === action.payload)[0]
             state.edit = noteToEdit.id
@@ -205,6 +209,6 @@ export const noteSlice = createSlice({
 
 })
 
-export const {setId, setTitle, setCategoryId, setDescription, setEdit, setSort} = noteSlice.actions
+export const {setId, setTitle, setCategoryId, setDescription, resetNote, setEdit, setSort} = noteSlice.actions
 
 export default noteSlice.reducer

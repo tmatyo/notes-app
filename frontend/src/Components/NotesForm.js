@@ -1,7 +1,8 @@
 import { TextField, TextareaAutosize, FormControl, InputLabel, Select, MenuItem, Button } from "@mui/material"
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import NoteAddIcon from '@mui/icons-material/NoteAdd'
 import { useSelector, useDispatch } from "react-redux"
-import { createNote, editNote, setTitle, setCategoryId, setDescription} from '../Provider/noteSlice'
+import { createNote, editNote, setTitle, setCategoryId, setDescription, resetNote} from '../Provider/noteSlice'
 
 function NotesForm({categories}) {
 
@@ -65,9 +66,16 @@ function NotesForm({categories}) {
                     required />
                 </FormControl>
 
-                <Button className="form-items" type="submit" variant="contained">
-                    <NoteAddIcon /> Create note
-                </Button>
+
+                <div className="form-items form-buttons" > 
+                    <Button className="form-items" type="submit" variant="contained">
+                        <NoteAddIcon /> Create note
+                    </Button>
+
+                    <Button className="form-items form-reset" variant="outlined" onClick={() => dispatch(resetNote())}>
+                        <RestartAltIcon /> Reset form
+                    </Button>
+                </div>
 
             </form>
         </div>

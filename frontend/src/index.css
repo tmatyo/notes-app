@@ -59,6 +59,15 @@ code {
     .form-items {
       margin: 20px 0;
     }
+
+    .form-buttons {
+      margin-top: 0;
+      margin-bottom: 0
+    }
+
+    .form-reset {
+      margin-left: var(--pm-md);
+    }
   }
 }
 
@@ -139,6 +148,7 @@ code {
 
 button[type='submit'] {
   background-color: var(--accent);
+  align-self: flex-start;
   &:hover {
     background-color: var(--accent);
     filter: brightness(110%);

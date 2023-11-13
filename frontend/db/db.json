@@ -11,8 +11,7 @@
       "title": "This might be another note",
       "categoryId": 3,
       "description": "Another note added ",
-      "id": 3,
-      "dateAdded": "2023-11-13T20:31:52.408Z"
+      "id": 3
     },
     {
       "title": "Trying this new feature",
@@ -23,9 +22,8 @@
     },
     {
       "title": "Trying new feature again",
-      "categoryId": 2,
+      "categoryId": 4,
       "description": "IT category is selected",
-      "dateAdded": "2023-11-13T22:11:43.411Z",
       "id": 5
     }
   ],
