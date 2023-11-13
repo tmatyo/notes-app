@@ -8,18 +8,11 @@
       "dateAdded": "2023-11-13T20:31:52.408Z"
     },
     {
-      "title": "Another note",
-      "categoryId": 3,
-      "description": "Testing this app",
-      "id": 2,
-      "dateAdded": "2023-11-15T20:31:52.408Z"
-    },
-    {
       "title": "This might be another note",
-      "categoryId": 4,
+      "categoryId": 3,
       "description": "Another note added ",
       "id": 3,
-      "dateAdded": "2023-11-23T20:31:52.408Z"
+      "dateAdded": "2023-11-13T20:31:52.408Z"
     },
     {
       "title": "Trying this new feature",
@@ -27,6 +20,13 @@
       "description": "Trying adding a note with dateAdded",
       "dateAdded": "2023-11-13T20:33:14.342Z",
       "id": 4
+    },
+    {
+      "title": "Trying new feature again",
+      "categoryId": 2,
+      "description": "IT category is selected",
+      "dateAdded": "2023-11-13T22:11:43.411Z",
+      "id": 5
     }
   ],
   "categories": [

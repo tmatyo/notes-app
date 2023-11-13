@@ -6,11 +6,14 @@ const Note = ({note}) => {
 
     const dispatch = useDispatch()
 
+    const formatDate = (isoDate) => new Date(isoDate).toLocaleString(window.navigator.language || window.navigator.userLanguage)
+
     return (
         <div className="note card">
             <h3 className="note-title">{ note.title }</h3>
             <p className="note-category">{ note.category.name }</p>
             <p className="note-description">{ note.description }</p>
+            <small className="note-added">Date added: { formatDate(note.dateAdded) }</small>
             <hr className="note-button-divider"/>
             <ButtonGroup size="small" variant="text" aria-label="text small button group" className="note-button-group">
                 <Button className="note-button note-edit-button" onClick={() => dispatch(setEdit(note.id))}>Edit</Button>
